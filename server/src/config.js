@@ -1,8 +1,6 @@
 /* eslint-disable no-console */
 // Disabling 'no-console' as it's reasonable for this file to do some logging.
 
-
-// obtain API key from your Skyscanner contact
 const { APIKEY } = process.env;
 
 if (!APIKEY) {
@@ -12,5 +10,5 @@ if (!APIKEY) {
 
 module.exports = {
   apiKey: APIKEY,
-  skyscannerApi: 'http://partners.api.skyscanner.net/',
+  etherscanApi: 'http://api.etherscan.io/api',
 };
