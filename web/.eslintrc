@@ -1,0 +1,22 @@
+{
+  "processors": ["stylelint-processor-styled-components"],
+  "extends": [
+    "airbnb",
+    "prettier",
+    "prettier/react",
+    "stylelint-config-recommended",
+    "stylelint-config-styled-components"
+  ],
+  "plugins": ["prettier"],
+  "rules": {
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".ts", ".tsx"]
+      }
+    ],
+    "import/imports-first": ["error", "absolute-first"],
+    "import/newline-after-import": "error"
+  },
+  "parser": "babel-eslint"
+}

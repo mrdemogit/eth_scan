@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "name": "tenx_frontend_challenge",
+  "version": "1.0.0",
+  "scripts": {
+    "install": "(cd ./web && yarn install) && (cd ./server && yarn install)",
+    "web": "(cd ./web && yarn start)",
+    "build": "(cd ./web && yarn run build)",
+    "server": "(cd ./server && yarn start)",
+    "pretest": "(cd ./web && yarn run lint) && (cd ./server && yarn run lint)",
+    "test":
+      "(cd ./web && CI=true npm test) && (cd ./server && CI=true npm test)",
+    "start": "echo 'Did you mean `npm run server` or `npm run client`?'"
+  },
+  "author": "Maros Demko",
+  "license": "ISC"
+}

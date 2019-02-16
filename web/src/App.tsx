@@ -1,31 +1,36 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { BrowserRouter as Router } from 'react-router-dom';
-import Layout from '@components/Layout';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import AppLayout from '@layouts/AppLayout';
+import { createGlobalStyle } from 'styled-components/macro';
+import { Normalize } from 'styled-normalize';
+import Home from '@pages/Home';
 
 const RedText = styled.p`
   color: red;
+`;
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    background: #1f1f1f;
+    font-family: 'San Francisco', Helvetica, Arial, san-serif;
+    font-weight: 100;
+    text-align: center;
+    color: white;
+  }
 `;
 
 class App extends Component {
   render() {
     return (
       <Router>
-        <Layout>
-          <header className="App-header">
-            <RedText>
-              Edit <code>src/App.tsx</code> and save to reload.
-            </RedText>
-            <a
-              className="App-link"
-              href="https://reactjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn React
-            </a>
-          </header>
-        </Layout>
+        <React.Fragment>
+          <Normalize />
+          <GlobalStyle />
+          <AppLayout>
+            <Route exact path="/" component={Home} />
+          </AppLayout>
+        </React.Fragment>
       </Router>
     );
   }
