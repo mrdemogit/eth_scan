@@ -3,10 +3,7 @@ import SearchBar from '@components/SearchBar';
 import styled from 'styled-components/macro';
 import { TextButton } from '@components/buttons';
 import ethereumAddress from 'ethereum-address';
-
-interface Props {
-  children: React.ReactNode;
-}
+import AppLayout from '@layouts/AppLayout';
 
 const SearchBarWrapper = styled.div`
   padding-top: 1rem;
@@ -21,7 +18,20 @@ const ErrorText = styled.div`
   color: red;
 `;
 
-class Home extends Component {
+const GrayText = styled.div`
+  color: gray;
+  font-size: 0.8rem;
+`;
+
+interface Props {
+  children: React.ReactNode;
+}
+
+interface State {
+  error: string | null;
+}
+
+class Home extends Component<Props, State> {
   state = {
     error: null,
   };
@@ -37,8 +47,11 @@ class Home extends Component {
   render() {
     const { error } = this.state;
     return (
-      <React.Fragment>
+      <AppLayout>
         <SearchBarWrapper>
+          <GrayText>
+            (for testing: 0xde0b295669a9fd93d5f28d9ec85e40f4cb697bae)
+          </GrayText>
           <SearchBar
             placeholder="Your Ethereum Address"
             onChange={value => console.log(value)}
@@ -49,7 +62,7 @@ class Home extends Component {
         <TextButtonWrapper>
           <TextButton>Continue</TextButton>
         </TextButtonWrapper>
-      </React.Fragment>
+      </AppLayout>
     );
   }
 }

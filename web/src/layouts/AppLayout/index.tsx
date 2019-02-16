@@ -1,10 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import Header from '@components/Header';
-
-interface Props {
-  children: React.ReactNode;
-}
+import HeaderComponent from '@components/Header';
 
 const LayoutStyled = styled.div`
   margin-right: auto;
@@ -12,11 +8,20 @@ const LayoutStyled = styled.div`
   max-width: 840px;
 `;
 
-const AppLayout: React.FC<Props> = ({ children }) => (
+interface Props {
+  children: React.ReactNode;
+  balance?: boolean;
+}
+
+const AppLayout: React.FC<Props> = ({ children, balance = false }) => (
   <React.Fragment>
-    <Header />
+    <HeaderComponent balance={balance} />
     <LayoutStyled>{children}</LayoutStyled>
   </React.Fragment>
 );
+
+export const Header = {
+  BALANCE: 'BALANCE',
+};
 
 export default AppLayout;

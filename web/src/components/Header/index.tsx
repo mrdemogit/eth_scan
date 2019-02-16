@@ -16,12 +16,19 @@ const HeaderInfo = styled.div`
   font-weight: 100;
 `;
 
-class Header extends Component {
+interface Props {
+  balance: boolean;
+}
+
+class Header extends Component<Props> {
   render() {
+    const { balance } = this.props;
     return (
       <WrapperStyled>
         <HeaderStyled>My Portfolio</HeaderStyled>
-        <HeaderInfo>Enter an Ethereum address to get started</HeaderInfo>
+        <HeaderInfo>
+          {balance ? '4411eth' : 'Enter an Ethereum address to get started'}
+        </HeaderInfo>
       </WrapperStyled>
     );
   }

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import AppLayout from '@layouts/AppLayout';
 import { createGlobalStyle } from 'styled-components/macro';
 import { Normalize } from 'styled-normalize';
 import Home from '@pages/Home';
+import Transactions from '@pages/Transactions';
 
 const RedText = styled.p`
   color: red;
@@ -27,9 +27,8 @@ class App extends Component {
         <React.Fragment>
           <Normalize />
           <GlobalStyle />
-          <AppLayout>
-            <Route exact path="/" component={Home} />
-          </AppLayout>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/:address" component={Transactions} />
         </React.Fragment>
       </Router>
     );

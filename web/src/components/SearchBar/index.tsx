@@ -10,6 +10,9 @@ const SearchInputStyled = styled.input`
   font-size: 1rem;
   text-align: center;
   color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 interface Props {
