@@ -1,10 +1,8 @@
 /* eslint-disable no-console */
 const fetch = require('node-fetch');
 const querystring = require('querystring');
-const {
-  Observable, of, forkJoin, from,
-} = require('rxjs');
-const { mergeMap, map, reduce } = require('rxjs/operators');
+const { Observable } = require('rxjs');
+const { reduce, concatMap } = require('rxjs/operators');
 const config = require('./config');
 
 const formatParams = params =>
@@ -39,11 +37,29 @@ const fetchTransactions = params =>
   });
 
 /**
- * Search for transactions
+ * Converts items to object with transactions Map<hash,object> and Order[]
+ * @type {[type]}
+ */
+const reduceToHashMap = reduce((prevItem, newItem) => {
+  if (!prevItem.order) {
+    prevItem.order = [];
+  }
+  return {
+    transactionsMap: { ...prevItem.transactionsMap, [newItem.hash]: newItem },
+    order: [...prevItem.order, newItem.hash],
+  };
+}, {});
+
+/**
+ * Search for transactions and transform to map
  * @param  {Object} params ETH Parameters to fetch transactions
  * @return {Promise<Observable>} Stream of transactions data
  */
-const search = async params => fetchTransactions(params);
+const search = async params =>
+  fetchTransactions(params).pipe(
+    concatMap(response => response.result),
+    reduceToHashMap,
+  );
 
 module.exports = {
   search,
