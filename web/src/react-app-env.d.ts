@@ -2,6 +2,8 @@
 /// <reference types="react" />
 /// <reference types="react-dom" />
 
+import { object } from 'prop-types';
+
 declare namespace NodeJS {
   interface ProcessEnv {
     NODE_ENV: 'development' | 'production' | 'test';
@@ -61,8 +63,4 @@ declare module '*.module.scss' {
 declare module '*.module.sass' {
   const classes: { [key: string]: string };
   export default classes;
-}
-
-declare module 'ethereum-address' {
-  const isAddress: (value: string) => boolean;
 }

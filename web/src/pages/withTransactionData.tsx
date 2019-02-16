@@ -1,33 +1,48 @@
 import React, { PureComponent } from 'react';
-import { TransactionsParamsType, TransactionType } from 'transactionTypes';
+import {
+  TransactionsParamsType,
+  TransactionMapType,
+  TransactionGroupType,
+} from 'transactionTypes';
 import { fetchTransactions } from '../Datasource';
+// @ts-ignore
+import { mergeLeft } from 'ramda';
 
 interface Props {
   transactionsParams: TransactionsParamsType;
 }
 
 interface State {
-  transactions: TransactionType[] | null;
+  transactionsMap: TransactionMapType | null;
   error: string | null;
+  order: string[];
 }
 
 function withData(WrappedComponent: any) {
   class ComponentWithData extends PureComponent<Props, State> {
     state = {
-      transactions: null,
+      transactionsMap: {},
       error: null,
+      order: [],
     };
 
     componentDidMount() {
       const { transactionsParams } = this.props;
       fetchTransactions(transactionsParams).subscribe(
-        data => this.setTransactions(data.response.result),
+        data => this.setTransactions(data.response),
         data => this.setError(data.response.error),
       );
     }
 
-    setTransactions = (transactions: TransactionType[]) => {
-      this.setState({ transactions, error: null });
+    setTransactions = (transactionsGroup: TransactionGroupType) => {
+      this.setState(({ transactionsMap: prevTransactions }) => ({
+        transactionsMap: mergeLeft(
+          prevTransactions,
+          transactionsGroup.transactionsMap,
+        ),
+        order: transactionsGroup.order,
+        error: null,
+      }));
     };
 
     setError = (error: string) => {
@@ -35,7 +50,15 @@ function withData(WrappedComponent: any) {
     };
 
     render() {
-      return <WrappedComponent {...this.state} {...this.props} />;
+      const { order, transactionsMap, error } = this.state;
+      const transactions = order.map(id => transactionsMap[id]);
+      return (
+        <WrappedComponent
+          error={error}
+          transactions={transactions}
+          {...this.props}
+        />
+      );
     }
   }
   return ComponentWithData;

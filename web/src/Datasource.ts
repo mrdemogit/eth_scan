@@ -1,3 +1,4 @@
+import { concat } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
 import querystring from 'querystring';
 import {
@@ -17,11 +18,24 @@ const formatParams = (params: TransactionsParamsType): string =>
   querystring.stringify(params);
 
 /**
- * Fetch Ethereum transactions
+ * Fetch Ethereum transactions for first stream 50 transactions and second stream rest
  * @param  {TransactionsParamsType} params Parameters for fetching subset of transactions
  * @return {Observable} Stream of transactions
  */
 export const fetchTransactions = (
   params: TransactionsParamsType,
 ): Observable<TransactionsAjaxResponse> =>
-  ajax({ url: `${API_URL}/api/search?${formatParams(params)}`, method: 'GET' });
+  concat(
+    ajax({
+      url: `${API_URL}/api/search?${formatParams({
+        ...params,
+        page: 1,
+        offset: 20,
+      })}`,
+      method: 'GET',
+    }),
+    ajax({
+      url: `${API_URL}/api/search?${formatParams(params)}`,
+      method: 'GET',
+    }),
+  );
