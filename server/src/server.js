@@ -18,20 +18,20 @@ app.use((req, res, next) => {
 
 app.get('/api/search', async (req, res) => {
   try {
-    const response = await etherService.search(req.query.address);
+    const response = await etherService.search(req.query);
 
     response.subscribe(
       (data) => {
         res.status(200).send(data);
       },
       (error) => {
-        console.error(error);
-        res.status(500).send(error);
+        console.error({ error });
+        res.status(500).send({ error });
       },
     );
   } catch (error) {
-    console.error(error);
-    res.status(500).send(error);
+    console.error({ error });
+    res.status(500).send({ error });
   }
 });
 

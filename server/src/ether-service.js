@@ -13,21 +13,24 @@ const formatParams = params =>
     action: 'txlist',
     // startblock: '0',
     // endblock: '99999999',
-    sort: 'asc',
+    sort: 'desc',
     apikey: config.apiKey,
     ...params,
   });
 
 /**
  * Feth ethereum transactions
- * @param  {String} address Eth Address
+ * @param  {String} params ETH Parameters to fetch transactions
  * @return {Observable} Eth Transactions Data
  */
-const fetchTransactions = address =>
+const fetchTransactions = params =>
   Observable.create(async (observer) => {
     try {
-      const response = await fetch(`${config.etherscanApi}?${formatParams({ address })}`);
+      const response = await fetch(`${config.etherscanApi}?${formatParams(params)}`);
       const body = await response.json();
+      if (body.status === '0') {
+        observer.error(body.result);
+      }
       observer.next(body);
       observer.complete();
     } catch (err) {
@@ -37,16 +40,10 @@ const fetchTransactions = address =>
 
 /**
  * Search for transactions
- * @param  {String} address ETH Address to fetch transactions
+ * @param  {Object} params ETH Parameters to fetch transactions
  * @return {Promise<Observable>} Stream of transactions data
  */
-const search = async (address) => {
-  try {
-    return fetchTransactions(address);
-  } catch (err) {
-    throw err;
-  }
-};
+const search = async params => fetchTransactions(params);
 
 module.exports = {
   search,
