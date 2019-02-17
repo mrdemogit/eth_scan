@@ -42,7 +42,6 @@ class InfinityList extends Component<Props, State> {
   render() {
     const { renderedTransactions } = this.state;
     const { children, transactions } = this.props;
-    console.log(renderedTransactions);
     return (
       <ListStyled>
         <InfiniteScroll

@@ -30,8 +30,8 @@ function withData(WrappedComponent: any) {
     }
   }
   return connect(
-    (state: GlobalState) => ({
-      ...state.transaction,
+    ({ transaction: { balance, ...restTransaction } }: GlobalState) => ({
+      ...restTransaction,
     }),
     { fetchTransactions },
   )(ComponentWithData);

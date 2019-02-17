@@ -15,7 +15,7 @@ declare module 'transactionTypes' {
     isFetching: boolean;
     isFetchingBalance: boolean;
     error: string | null;
-    balance: string | null;
+    balance?: string | null;
   }
 
   export interface TransactionsParamsType {
@@ -38,6 +38,16 @@ declare module 'transactionTypes' {
 
   export interface BalancesAjaxResponse extends AjaxResponse {
     response: string;
+  }
+}
+
+declare module 'currencyTypes' {
+  export interface CurrencyGroupType {
+    [currency: string]: number;
+  }
+
+  export interface CurrencyState {
+    currenciesMap: CurrencyGroupType;
   }
 }
 

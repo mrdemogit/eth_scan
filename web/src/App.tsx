@@ -6,6 +6,7 @@ import { createGlobalStyle } from 'styled-components/macro';
 import { Normalize } from 'styled-normalize';
 import Home from '@pages/Home';
 import Transactions from '@pages/Transactions';
+import { IntlProvider } from 'react-intl';
 
 const store = configureStore();
 
@@ -16,6 +17,9 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 100;
     text-align: center;
     color: white;
+    * {
+      transition: all 0.2s ease;
+    }
   }
 `;
 
@@ -23,16 +27,18 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Router>
-          <React.Fragment>
-            <Normalize />
-            <GlobalStyle />
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/:address" component={Transactions} />
-            </Switch>
-          </React.Fragment>
-        </Router>
+        <IntlProvider locale="en-sg">
+          <Router>
+            <React.Fragment>
+              <Normalize />
+              <GlobalStyle />
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/:address" component={Transactions} />
+              </Switch>
+            </React.Fragment>
+          </Router>
+        </IntlProvider>
       </Provider>
     );
   }
