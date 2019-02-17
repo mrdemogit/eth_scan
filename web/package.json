@@ -146,10 +146,7 @@
       "jsx",
       "node"
     ],
-    "watchPlugins": [
-      "/Users/mrdemog/Development/interviews/tenx_frontend_challenge/web/node_modules/jest-watch-typeahead/filename.js",
-      "/Users/mrdemog/Development/interviews/tenx_frontend_challenge/web/node_modules/jest-watch-typeahead/testname.js"
-    ]
+    "watchPlugins": []
   },
   "babel": {
     "presets": [
