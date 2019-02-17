@@ -7,7 +7,9 @@ const initialState = {
   transactionsMap: {},
   order: [],
   isFetching: false,
+  isFetchingBalance: false,
   error: null,
+  balance: null,
 };
 
 export default function reducer(
@@ -33,6 +35,26 @@ export default function reducer(
         ...state,
         ...action.payload,
         isFetching: false,
+      };
+    }
+    case actionTypes.FETCH_BALANCE: {
+      return {
+        ...state,
+        isFetchingBalance: true,
+      };
+    }
+    case actionTypes.FETCH_BALANCE_ERROR: {
+      return {
+        ...state,
+        error: action.payload.response.error,
+        isFetchingBalance: false,
+      };
+    }
+    case actionTypes.SET_BALANCE: {
+      return {
+        ...state,
+        balance: action.payload,
+        isFetchingBalance: false,
       };
     }
     default: {

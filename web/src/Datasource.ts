@@ -4,6 +4,7 @@ import querystring from 'querystring';
 import {
   TransactionsParamsType,
   TransactionsAjaxResponse,
+  BalancesAjaxResponse,
 } from 'transactionTypes';
 import { Observable } from 'rxjs/internal/Observable';
 
@@ -37,6 +38,21 @@ export const fetchTransactions = (
     }),
     ajax({
       url: `${API_URL}/api/transactions?${formatParams(params)}`,
+      method: 'GET',
+    }),
+  );
+
+/**
+ * Fetching ethereum balance
+ * @param  {String} address Address for fetching ballance
+ * @return {Observable} Stream of transactions
+ */
+export const fetchBalance = (
+  address: string,
+): Observable<BalancesAjaxResponse> =>
+  merge(
+    ajax({
+      url: `${API_URL}/api/balances?${formatParams({ address })}`,
       method: 'GET',
     }),
   );

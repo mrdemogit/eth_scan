@@ -13,7 +13,9 @@ declare module 'transactionTypes' {
   export interface TransactionState extends TransactionGroupType {
     address: string | null;
     isFetching: boolean;
+    isFetchingBalance: boolean;
     error: string | null;
+    balance: string | null;
   }
 
   export interface TransactionsParamsType {
@@ -32,6 +34,10 @@ declare module 'transactionTypes' {
 
   export interface TransactionsAjaxResponse extends AjaxResponse {
     response: TransactionGroupType;
+  }
+
+  export interface BalancesAjaxResponse extends AjaxResponse {
+    response: string;
   }
 }
 

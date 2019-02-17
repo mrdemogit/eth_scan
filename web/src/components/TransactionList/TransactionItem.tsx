@@ -2,9 +2,7 @@ import React, { memo } from 'react';
 import styled from 'styled-components/macro';
 import { TransactionType } from 'transactionTypes';
 import moment from 'moment';
-
-const formatValue = (value: string) =>
-  parseInt(value, 10) / 1000000000000000000;
+import { formatEthValue } from '@utils/index';
 
 const formatTime = (timeStamp: number) => {
   const txTime = moment(timeStamp * 1000);
@@ -93,7 +91,7 @@ const TransactionItem: React.FC<TransactionType> = ({
     <CurrencyStyled>ETH</CurrencyStyled>
     <ContentStyled>
       <ValueAndTime>
-        <ValueStyled>{formatValue(value)} ETH</ValueStyled>
+        <ValueStyled>{formatEthValue(value)} ETH</ValueStyled>
         <TimeStyled>
           {formatTime(parseInt(timeStamp, 10))} <Arrow />
         </TimeStyled>
