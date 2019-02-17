@@ -8,6 +8,7 @@ import {
 import { Observable } from 'rxjs/internal/Observable';
 
 const API_URL = 'http://localhost:4000';
+export const OFFSET = 20;
 
 /**
  * Transform js object to query params
@@ -27,15 +28,15 @@ export const fetchTransactions = (
 ): Observable<TransactionsAjaxResponse> =>
   merge(
     ajax({
-      url: `${API_URL}/api/search?${formatParams({
+      url: `${API_URL}/api/transactions?${formatParams({
         ...params,
         page: 1,
-        offset: 20,
+        offset: OFFSET,
       })}`,
       method: 'GET',
     }),
     ajax({
-      url: `${API_URL}/api/search?${formatParams(params)}`,
+      url: `${API_URL}/api/transactions?${formatParams(params)}`,
       method: 'GET',
     }),
   );

@@ -17,17 +17,17 @@ const HeaderInfo = styled.div`
 `;
 
 interface Props {
-  balance: boolean;
+  custom?: React.ReactNode;
 }
 
 class Header extends Component<Props> {
   render() {
-    const { balance } = this.props;
+    const { custom } = this.props;
     return (
       <WrapperStyled>
         <HeaderStyled>My Portfolio</HeaderStyled>
         <HeaderInfo>
-          {balance ? '4411eth' : 'Enter an Ethereum address to get started'}
+          {custom || 'Enter an Ethereum address to get started'}
         </HeaderInfo>
       </WrapperStyled>
     );

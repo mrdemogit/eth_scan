@@ -5,17 +5,17 @@ import HeaderComponent from '@components/Header';
 const LayoutStyled = styled.div`
   margin-right: auto;
   margin-left: auto;
-  max-width: 840px;
 `;
 
 interface Props {
+  customHeader?: React.ReactNode;
   children: React.ReactNode;
   balance?: boolean;
 }
 
-const AppLayout: React.FC<Props> = ({ children, balance = false }) => (
+const AppLayout: React.FC<Props> = ({ children, customHeader }) => (
   <React.Fragment>
-    <HeaderComponent balance={balance} />
+    <HeaderComponent custom={customHeader} />
     <LayoutStyled>{children}</LayoutStyled>
   </React.Fragment>
 );

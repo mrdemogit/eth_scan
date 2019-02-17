@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { TransactionType } from 'transactionTypes';
-
-const ListStyled = styled.div``;
+import TransactionItem from './TransactionItem';
+import InfinityList from './InfinityList';
 
 const ErrorStyled = styled.div`
   color: red;
@@ -15,18 +15,30 @@ const LoadingStyled = styled.div`
 
 interface Props {
   error?: string;
-  fetching: boolean;
+  isFetching: boolean;
   transactions: TransactionType[];
 }
 
-const TransactionList: React.FC<Props> = ({ error, transactions }) => {
+const TransactionList: React.FC<Props> = ({
+  error,
+  transactions,
+  isFetching,
+}) => {
   if (error) {
     return <ErrorStyled>{error}</ErrorStyled>;
   }
-  if (!transactions) {
+  if (isFetching) {
     return <LoadingStyled>Loading...</LoadingStyled>;
   }
-  return <ListStyled>gagea</ListStyled>;
+  return (
+    <InfinityList transactions={transactions}>
+      {transactions =>
+        transactions.map(transaction => (
+          <TransactionItem key={transaction.hash} {...transaction} />
+        ))
+      }
+    </InfinityList>
+  );
 };
 
 export default TransactionList;

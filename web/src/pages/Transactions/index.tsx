@@ -15,7 +15,7 @@ const TransactionListWithData = withTransactionData(TransactionList);
 
 const Transactions: React.FC<Props> = ({ match: { params } }) => {
   return (
-    <AppLayout balance>
+    <AppLayout customHeader={'aggeage'}>
       <TransactionListWithData transactionsParams={params} />
     </AppLayout>
   );
