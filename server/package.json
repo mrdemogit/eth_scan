@@ -4,7 +4,7 @@
   "author": "Maros Demko",
   "license": "ISC",
   "scripts": {
-    "start": "node ./src/server.js",
+    "start": "APIKEY=9PSV4TPFE5W13X1JQMRPTTFHU1HDZ66FT9 APIKEY_CURRENCY=6dfea6699a23de28643940902b4f523916fe1b4cf850316d960c0c8c2367959b node ./src/server.js",
     "test": "echo 'There are no server tests yet...'",
     "lint:fix": "npm run lint -- --fix",
     "lint": "eslint . --ignore-path ./../.gitignore"

@@ -52,6 +52,25 @@ app.get('/api/balances', async (req, res) => {
   }
 });
 
+app.get('/api/currencies', async (req, res) => {
+  try {
+    const response = await etherService.getCurrencies(req.query);
+
+    response.subscribe(
+      (data) => {
+        res.status(200).send(data);
+      },
+      (error) => {
+        console.error({ error });
+        res.status(500).send({ error });
+      },
+    );
+  } catch (error) {
+    console.error({ error });
+    res.status(500).send({ error });
+  }
+});
+
 app.listen(4000, () => {
   console.log('Node server listening on http://localhost:4000');
 });

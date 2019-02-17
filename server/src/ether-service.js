@@ -4,8 +4,10 @@ const querystring = require('querystring');
 const { Observable } = require('rxjs');
 const config = require('./config');
 
-const formatParams = params =>
-  querystring.stringify({
+const formatParams = params => querystring.stringify(params);
+
+const formatScanEthParams = params =>
+  formatParams({
     module: 'account',
     apikey: config.apiKey,
     ...params,
@@ -19,7 +21,11 @@ const formatParams = params =>
 const fetchTransactions = params =>
   Observable.create(async (observer) => {
     try {
-      const response = await fetch(`${config.etherscanApi}?${formatParams({ ...params, action: 'txlist', sort: 'desc' })}`);
+      const response = await fetch(`${config.etherscanApi}?${formatScanEthParams({
+        ...params,
+        action: 'txlist',
+        sort: 'desc',
+      })}`);
       const body = await response.json();
       if (body.status === '0') {
         observer.error(`${body.message} ${body.result}`);
@@ -46,7 +52,11 @@ const searchTransactions = async params => fetchTransactions(params);
 const getBalances = params =>
   Observable.create(async (observer) => {
     try {
-      const response = await fetch(`${config.etherscanApi}?${formatParams({ ...params, action: 'balance', tag: 'latest' })}`);
+      const response = await fetch(`${config.etherscanApi}?${formatScanEthParams({
+        ...params,
+        action: 'balance',
+        tag: 'latest',
+      })}`);
       const body = await response.json();
       if (body.status === '0') {
         observer.error(`${body.message} ${body.result}`);
@@ -58,7 +68,29 @@ const getBalances = params =>
     }
   });
 
+/**
+ * Fetch currencies
+ * @param  {String} params ETH Parameters to fetch balances
+ * @return {Observable} Eth Balance
+ */
+const getCurrencies = () =>
+  Observable.create(async (observer) => {
+    try {
+      const response = await fetch(`${config.currencyApi}/data/price?${formatParams({
+        api_key: config.apiKeyCurrency,
+        fsym: 'ETH',
+        tsyms: 'USD,JPY,EUR,SGD,KRW,GBP, CNY',
+      })}`);
+      const body = await response.json();
+      observer.next(body);
+      observer.complete();
+    } catch (err) {
+      throw err;
+    }
+  });
+
 module.exports = {
   searchTransactions,
   getBalances,
+  getCurrencies,
 };
