@@ -16,9 +16,26 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/api/search', async (req, res) => {
+app.get('/api/transactions', async (req, res) => {
   try {
-    const response = await etherService.search(req.query);
+    const response = await etherService.searchTransactions(req.query);
+
+    response.subscribe(
+      (data) => {
+        res.status(200).send(data);
+      },
+      (error) => {
+        res.status(500).send({ error });
+      },
+    );
+  } catch (error) {
+    res.status(500).send({ error });
+  }
+});
+
+app.get('/api/balances', async (req, res) => {
+  try {
+    const response = await etherService.getBalances(req.query);
 
     response.subscribe(
       (data) => {
