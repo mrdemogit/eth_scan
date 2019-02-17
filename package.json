@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "tenx_frontend_challenge",
+  "name": "crypto_scan",
   "version": "1.0.0",
   "scripts": {
     "install": "(cd ./web && yarn install) && (cd ./server && yarn install)",
