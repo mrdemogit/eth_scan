@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TransactionList Render Loading TransactionList 1`] = `
+<div>
+  <div
+    class="TransactionList__LoadingStyled-sc-1k4q6wn-1 eckYlr"
+  >
+    Loading...
+  </div>
+</div>
+`;
+
+exports[`TransactionList Render Loading TransactionList 2`] = `
+<div>
+  <div
+    class="InfinityList__ListStyled-sc-7l0oum-0 cTFxTz"
+  >
+    <div>
+      <div
+        class="TransactionItem__ItemStyled-sc-1199a3v-0 fpAPjr"
+      >
+        <div
+          class="TransactionItem__CurrencyStyled-sc-1199a3v-1 dAzMgI"
+        >
+          ETH
+        </div>
+        <div
+          class="TransactionItem__ContentStyled-sc-1199a3v-2 lhVVNx"
+        >
+          <div
+            class="TransactionItem__ValueAndTime-sc-1199a3v-5 eenYPy"
+          >
+            <div
+              class="TransactionItem__ValueStyled-sc-1199a3v-3 bJYuN"
+            >
+              3.234e-15
+               ETH
+            </div>
+            <div
+              class="TransactionItem__TimeStyled-sc-1199a3v-6 fGYyVv"
+            >
+              an hour ago
+               
+              <span
+                class="TransactionItem__Arrow-sc-1199a3v-7 kuRVia"
+              />
+            </div>
+          </div>
+          <div
+            class="TransactionItem__AddressStyled-sc-1199a3v-4 eDIXqk"
+          >
+            Received from
+          </div>
+          <div
+            class="TransactionItem__AddressStyled-sc-1199a3v-4 eDIXqk"
+          >
+            fromaddress
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TransactionList Render empty TransactionList 1`] = `
+<div>
+  <div
+    class="InfinityList__ListStyled-sc-7l0oum-0 cTFxTz"
+  >
+    <div />
+  </div>
+</div>
+`;
+
+exports[`TransactionList Render error TransactionList 1`] = `
+<div>
+  <div
+    class="TransactionList__ErrorStyled-sc-1k4q6wn-0 bDzcTg"
+  >
+    Error!!!!
+  </div>
+</div>
+`;

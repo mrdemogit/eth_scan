@@ -5,14 +5,16 @@ import {
   FETCH_BALANCE,
   SET_BALANCE,
 } from './actionTypes';
-import { TransactionState } from 'transactionTypes';
+import { TransactionsParamsType, TransactionGroupType } from 'transactionTypes';
 
-export const fetchTransactions = createStandardAction(FETCH_TRANSACTIONS)();
+export const fetchTransactions = createStandardAction(FETCH_TRANSACTIONS)<
+  TransactionsParamsType
+>();
 
 export const setTransactions = createStandardAction(SET_TRANSACTIONS)<
-  TransactionState
+  TransactionGroupType
 >();
 
 export const fetchBalance = createStandardAction(FETCH_BALANCE)();
 
-export const setBalance = createStandardAction(SET_BALANCE)<TransactionState>();
+export const setBalance = createStandardAction(SET_BALANCE)<string>();

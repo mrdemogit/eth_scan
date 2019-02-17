@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchBar Render default SearchBar 1`] = `
+<div>
+  <input
+    class="SearchBar__SearchInputStyled-sc-1aqayj1-0 euIjYj"
+    placeholder="placeholder"
+  />
+</div>
+`;

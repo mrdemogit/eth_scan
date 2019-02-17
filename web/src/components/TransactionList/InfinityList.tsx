@@ -27,7 +27,6 @@ class InfinityList extends Component<Props, State> {
   };
 
   loadMore = (page: number) => {
-    console.log('fired', page);
     const { transactions } = this.props;
     const start = page * OFFSET;
     const end = start + OFFSET;

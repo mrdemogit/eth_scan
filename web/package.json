@@ -16,7 +16,7 @@
   "dependencies": {
     "@babel/core": "7.2.2",
     "@svgr/webpack": "4.1.0",
-    "@types/jest": "24.0.5",
+    "@types/jest": "^24.0.5",
     "@types/node": "11.9.4",
     "@types/ramda": "^0.25.50",
     "@types/react": "16.8.3",
@@ -26,6 +26,7 @@
     "@types/react-redux": "^7.0.1",
     "@types/react-router-dom": "^4.3.1",
     "@types/redux-logger": "^3.0.7",
+    "@types/redux-mock-store": "^1.0.0",
     "@types/styled-components": "^4.1.10",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "9.0.0",
@@ -78,8 +79,10 @@
     "react-intl": "^2.8.0",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
+    "react-testing-library": "^5.8.0",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
+    "redux-mock-store": "^1.5.3",
     "redux-observable": "^1.0.0",
     "resolve": "1.10.0",
     "rxjs": "^6.4.0",
@@ -127,7 +130,9 @@
     ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web",
-      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy",
+      "^@utils(.*)$": "<rootDir>/src/utils/$1",
+      "^@components(.*)$": "<rootDir>/src/components/$1"
     },
     "moduleFileExtensions": [
       "web.js",

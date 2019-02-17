@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppLayout Render default layout 1`] = `
+<div>
+  <div
+    class="Header__WrapperStyled-sc-1e5fucl-0 gqwNmP"
+  >
+    <header
+      class="Header__HeaderStyled-sc-1e5fucl-1 fJqWDQ"
+    >
+      My Portfolio
+    </header>
+    <div
+      class="Header__HeaderInfo-sc-1e5fucl-2 zCCez"
+    >
+      Enter an Ethereum address to get started
+    </div>
+  </div>
+  <div
+    class="AppLayout__LayoutStyled-sc-12j04sb-0 bZrmVr"
+  />
+</div>
+`;
