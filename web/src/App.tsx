@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import configureStore from './store/configureStore';
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import { createGlobalStyle } from 'styled-components/macro';
 import { Normalize } from 'styled-normalize';
 import Home from '@pages/Home';
 import Transactions from '@pages/Transactions';
 
-const RedText = styled.p`
-  color: red;
-`;
+const store = configureStore();
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -23,14 +22,18 @@ const GlobalStyle = createGlobalStyle`
 class App extends Component {
   render() {
     return (
-      <Router>
-        <React.Fragment>
-          <Normalize />
-          <GlobalStyle />
-          <Route exact path="/" component={Home} />
-          <Route exact path="/:address" component={Transactions} />
-        </React.Fragment>
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <React.Fragment>
+            <Normalize />
+            <GlobalStyle />
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/:address" component={Transactions} />
+            </Switch>
+          </React.Fragment>
+        </Router>
+      </Provider>
     );
   }
 }

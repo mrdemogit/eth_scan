@@ -1,12 +1,6 @@
 const { AjaxResponse } = require('rxjs/ajax');
 
 declare module 'transactionTypes' {
-  export interface TransactionsParamsType {
-    address: string;
-    page?: number;
-    offset?: number;
-  }
-
   export interface TransactionMapType {
     [hash: string]: TransactionType;
   }
@@ -16,8 +10,21 @@ declare module 'transactionTypes' {
     transactionsMap: TransactionMapType;
   }
 
+  export interface TransactionState extends TransactionGroupType {
+    address: string | null;
+    isFetching: boolean;
+    error: string | null;
+  }
+
+  export interface TransactionsParamsType {
+    address: string;
+    page?: number;
+    offset?: number;
+  }
+
   export interface TransactionType {
     timeStamp: string;
+    hash: string;
     from?: string;
     to?: string;
     value: string;

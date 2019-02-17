@@ -1,4 +1,4 @@
-import { concat } from 'rxjs';
+import { merge } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
 import querystring from 'querystring';
 import {
@@ -25,7 +25,7 @@ const formatParams = (params: TransactionsParamsType): string =>
 export const fetchTransactions = (
   params: TransactionsParamsType,
 ): Observable<TransactionsAjaxResponse> =>
-  concat(
+  merge(
     ajax({
       url: `${API_URL}/api/search?${formatParams({
         ...params,
