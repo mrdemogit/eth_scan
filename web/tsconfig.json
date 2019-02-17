@@ -23,14 +23,7 @@
       }
     ],
     "typeRoots": ["./node_modules/@types"],
-    "include": ["src"],
-    "exclude": [
-      "config",
-      "node_modules",
-      "**/*.spec.ts",
-      "**/*.spec.tsx",
-      "**/*.test.ts",
-      "**/*.test.tsx"
-    ]
-  }
+    "exclude": ["**/*.test.ts", "**/*.test.tsx"]
+  },
+  "exclude": ["node_modules", "scripts", "config"]
 }
