@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
 import SearchBar from '@components/SearchBar';
 import styled from 'styled-components/macro';
-import { TextButton } from '@components/buttons';
 import ethereumAddress from 'ethereum-address';
 import AppLayout from '@layouts/AppLayout';
+import { Link } from 'react-router-dom';
+
+const TextLink = styled(Link)`
+  background: inherit;
+  color: #fff;
+  cursor: pointer;
+  outline: none;
+  text-decoration: none;
+`;
 
 const SearchBarWrapper = styled.div`
   padding-top: 1rem;
@@ -29,11 +37,17 @@ interface Props {
 
 interface State {
   error: string | null;
+  address: string;
 }
 
 class Home extends Component<Props, State> {
   state = {
     error: null,
+    address: '',
+  };
+
+  setAddress = (address: string) => {
+    this.setState({ address });
   };
 
   validateSearch = (searchValue: string) => {
@@ -45,7 +59,7 @@ class Home extends Component<Props, State> {
   };
 
   render() {
-    const { error } = this.state;
+    const { error, address } = this.state;
     return (
       <AppLayout>
         <SearchBarWrapper>
@@ -54,13 +68,13 @@ class Home extends Component<Props, State> {
           </GrayText>
           <SearchBar
             placeholder="Your Ethereum Address"
-            onChange={value => console.log(value)}
+            onChange={this.setAddress}
             onBlur={this.validateSearch}
           />
           <ErrorText>{error}</ErrorText>
         </SearchBarWrapper>
         <TextButtonWrapper>
-          <TextButton>Continue</TextButton>
+          <TextLink to={`/${address}`}>Continue</TextLink>
         </TextButtonWrapper>
       </AppLayout>
     );
