@@ -2,12 +2,15 @@ import React from 'react';
 import { render } from 'react-testing-library';
 import TransactionList from '../index';
 
-describe('TransactionList', () => {
-  jest.mock('moment', () => () => ({
-    format: () => '2018–01–30T12:34:56+00:00',
-  }));
+jest.mock('moment', () => () => ({
+  format: () => '2018–01–30T12:34:56+00:00',
+  fromNow: () => '1 hour ago',
+  add: () => '2018–01–30T12:34:56+00:00',
+  year: () => 2018,
+  isBefore: () => true,
+}));
 
-  const formatTime = () => 'time';
+describe('TransactionList', () => {
   it('Render empty TransactionList', () => {
     const { container } = render(
       <TransactionList

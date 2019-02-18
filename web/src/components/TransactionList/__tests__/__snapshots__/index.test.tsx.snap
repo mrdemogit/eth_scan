@@ -39,7 +39,7 @@ exports[`TransactionList Render Loading TransactionList 2`] = `
             <div
               class="TransactionItem__TimeStyled-sc-1199a3v-6 fGYyVv"
             >
-              10 hours ago
+              2018–01–30T12:34:56+00:00
                
               <span
                 class="TransactionItem__Arrow-sc-1199a3v-7 kuRVia"
