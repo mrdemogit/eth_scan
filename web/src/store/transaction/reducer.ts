@@ -1,6 +1,6 @@
-import { AnyAction } from 'redux';
 import * as actionTypes from './actionTypes';
 import { TransactionState } from 'transactionTypes';
+import { Reducer } from 'redux';
 
 const initialState = {
   address: null,
@@ -12,10 +12,7 @@ const initialState = {
   balance: null,
 };
 
-export default function reducer(
-  state: TransactionState = initialState,
-  action: AnyAction,
-): TransactionState {
+const reducer: Reducer<TransactionState> = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_TRANSACTIONS: {
       return {
@@ -61,4 +58,6 @@ export default function reducer(
       return state;
     }
   }
-}
+};
+
+export default reducer;

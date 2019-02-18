@@ -1,4 +1,4 @@
-import { AnyAction } from 'redux';
+import { Reducer } from 'redux';
 import * as actionTypes from './actionTypes';
 import { CurrencyState } from 'currencyTypes';
 
@@ -6,10 +6,7 @@ const initialState = {
   currenciesMap: {},
 };
 
-export default function reducer(
-  state: CurrencyState = initialState,
-  action: AnyAction,
-): CurrencyState {
+const reducer: Reducer<CurrencyState> = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.SET_CURRENCIES: {
       return {
@@ -20,4 +17,5 @@ export default function reducer(
       return state;
     }
   }
-}
+};
+export default reducer;
