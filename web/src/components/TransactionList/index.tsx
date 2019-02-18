@@ -14,12 +14,14 @@ const LoadingStyled = styled.div`
 `;
 
 interface Props {
+  address: string;
   error?: string;
   isFetching: boolean;
   transactions: TransactionType[];
 }
 
 const TransactionList: React.FC<Props> = ({
+  address,
   error,
   transactions,
   isFetching,
@@ -31,10 +33,14 @@ const TransactionList: React.FC<Props> = ({
     return <LoadingStyled>Loading...</LoadingStyled>;
   }
   return (
-    <InfinityList transactions={transactions}>
+    <InfinityList address={address} transactions={transactions}>
       {transactions =>
         transactions.map(transaction => (
-          <TransactionItem key={transaction.hash} {...transaction} />
+          <TransactionItem
+            key={transaction.hash}
+            address={address}
+            {...transaction}
+          />
         ))
       }
     </InfinityList>

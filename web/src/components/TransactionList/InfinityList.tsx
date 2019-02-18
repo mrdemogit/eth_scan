@@ -13,6 +13,7 @@ const ListStyled = styled.div`
 `;
 
 interface Props {
+  address: string;
   transactions: TransactionType[];
   children: (values: TransactionType[]) => React.ReactNode;
 }

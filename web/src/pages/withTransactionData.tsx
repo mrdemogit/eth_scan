@@ -17,10 +17,17 @@ function withData(WrappedComponent: any) {
     }
 
     render() {
-      const { order, transactionsMap, error, isFetching } = this.props;
+      const {
+        order,
+        transactionsMap,
+        error,
+        isFetching,
+        transactionsParams: { address },
+      } = this.props;
       const transactions = order.map((id: string) => transactionsMap[id]);
       return (
         <WrappedComponent
+          address={address}
           error={error}
           transactions={transactions}
           order={order}

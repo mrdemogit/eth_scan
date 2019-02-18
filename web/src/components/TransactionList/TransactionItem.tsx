@@ -80,9 +80,13 @@ const Arrow = styled.span`
   margin-left: 8px;
 `;
 
-const TransactionItem: React.FC<TransactionType> = ({
+interface Props extends TransactionType {
+  address: string;
+}
+
+const TransactionItem: React.FC<Props> = ({
+  address,
   value,
-  hash,
   timeStamp,
   from,
   to,
@@ -96,7 +100,7 @@ const TransactionItem: React.FC<TransactionType> = ({
           {formatTime(parseInt(timeStamp, 10))} <Arrow />
         </TimeStyled>
       </ValueAndTime>
-      {hash === from ? (
+      {from && address.toUpperCase() === from.toUpperCase() ? (
         <React.Fragment>
           <AddressStyled>Sent to</AddressStyled>
           <AddressStyled>{to}</AddressStyled>

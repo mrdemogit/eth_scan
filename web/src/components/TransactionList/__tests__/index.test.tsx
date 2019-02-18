@@ -10,7 +10,12 @@ describe('TransactionList', () => {
   const formatTime = () => 'time';
   it('Render empty TransactionList', () => {
     const { container } = render(
-      <TransactionList error={null} transactions={[]} isFetching={false} />,
+      <TransactionList
+        address="0xF9C50C03Cfd4DDBAEce4D3B86fA79789865DeECB"
+        error={undefined}
+        transactions={[]}
+        isFetching={false}
+      />,
     );
     expect(container).toMatchSnapshot();
   });
@@ -18,6 +23,7 @@ describe('TransactionList', () => {
   it('Render error TransactionList', () => {
     const { container } = render(
       <TransactionList
+        address="0xF9C50C03Cfd4DDBAEce4D3B86fA79789865DeECB"
         error={'Error!!!!'}
         transactions={[]}
         isFetching={false}
@@ -28,7 +34,12 @@ describe('TransactionList', () => {
 
   it('Render Loading TransactionList', () => {
     const { container } = render(
-      <TransactionList error={null} transactions={[]} isFetching={true} />,
+      <TransactionList
+        address="0xF9C50C03Cfd4DDBAEce4D3B86fA79789865DeECB"
+        error={undefined}
+        transactions={[]}
+        isFetching={true}
+      />,
     );
     expect(container).toMatchSnapshot();
   });
@@ -36,12 +47,13 @@ describe('TransactionList', () => {
   it('Render Loading TransactionList', () => {
     const { container } = render(
       <TransactionList
-        error={null}
+        address="0xF9C50C03Cfd4DDBAEce4D3B86fA79789865DeECB"
+        error={undefined}
         transactions={[
           {
             value: '3234',
             hash: 'grsg42t4$$24',
-            timeStamp: 1550415453,
+            timeStamp: '1550415453',
             from: 'fromaddress',
             to: 'toAddress',
           },
