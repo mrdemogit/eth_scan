@@ -15,6 +15,6 @@ export const setTransactions = createStandardAction(SET_TRANSACTIONS)<
   TransactionGroupType
 >();
 
-export const fetchBalance = createStandardAction(FETCH_BALANCE)();
+export const fetchBalance = createStandardAction(FETCH_BALANCE)<string>();
 
 export const setBalance = createStandardAction(SET_BALANCE)<string>();

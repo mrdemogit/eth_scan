@@ -5,17 +5,25 @@ import { fetchBalance } from '@store/transaction/actions';
 import { fetchCurrencies } from '@store/currency/actions';
 import { CurrencyGroupType } from 'currencyTypes';
 
-interface Props {
+interface PropsFromState {
   balance?: string | null;
   isFetching: boolean;
-  address: string;
   currenciesMap: CurrencyGroupType;
-  fetchBalance: (address: string) => void;
-  fetchCurrencies: () => void;
 }
 
+interface PropsFromDispatch {
+  fetchBalance: typeof fetchBalance;
+  fetchCurrencies: typeof fetchCurrencies;
+}
+
+interface OwnProps {
+  address: string;
+}
+
+interface AllProps extends PropsFromState, PropsFromDispatch, OwnProps {}
+
 function withData(WrappedComponent: any) {
-  class ComponentWithData extends PureComponent<Props> {
+  class ComponentWithData extends PureComponent<AllProps> {
     componentDidMount() {
       const { address, fetchBalance, fetchCurrencies } = this.props;
       fetchCurrencies();
@@ -33,8 +41,8 @@ function withData(WrappedComponent: any) {
       );
     }
   }
-  return connect(
-    (state: GlobalState) => ({
+  return connect<PropsFromState, PropsFromDispatch, OwnProps, GlobalState>(
+    state => ({
       isFetching: state.transaction.isFetchingBalance,
       balance: state.transaction.balance,
       currenciesMap: state.currency.currenciesMap,

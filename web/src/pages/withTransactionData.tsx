@@ -4,13 +4,20 @@ import { TransactionsParamsType, TransactionState } from 'transactionTypes';
 import { GlobalState } from 'store';
 import { fetchTransactions } from '@store/transaction/actions';
 
-interface Props extends TransactionState {
-  transactionsParams: TransactionsParamsType;
-  fetchTransactions: (params: TransactionsParamsType) => void;
+interface PropsFromState extends TransactionState {}
+
+interface PropsFromDispatch {
+  fetchTransactions: typeof fetchTransactions;
 }
 
+interface OwnProps {
+  transactionsParams: TransactionsParamsType;
+}
+
+interface AllProps extends PropsFromState, PropsFromDispatch, OwnProps {}
+
 function withData(WrappedComponent: any) {
-  class ComponentWithData extends PureComponent<Props> {
+  class ComponentWithData extends PureComponent<AllProps> {
     componentDidMount() {
       const { transactionsParams, fetchTransactions } = this.props;
       fetchTransactions(transactionsParams);
@@ -36,8 +43,8 @@ function withData(WrappedComponent: any) {
       );
     }
   }
-  return connect(
-    ({ transaction: { balance, ...restTransaction } }: GlobalState) => ({
+  return connect<PropsFromState, PropsFromDispatch, OwnProps, GlobalState>(
+    ({ transaction: { balance, ...restTransaction } }) => ({
       ...restTransaction,
     }),
     { fetchTransactions },
