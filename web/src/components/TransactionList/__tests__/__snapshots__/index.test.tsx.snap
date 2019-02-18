@@ -47,12 +47,12 @@ exports[`TransactionList Render Loading TransactionList 2`] = `
             </div>
           </div>
           <div
-            class="TransactionItem__AddressStyled-sc-1199a3v-4 eDIXqk"
+            class="TransactionItem__AddressStyled-sc-1199a3v-4 hLdONn"
           >
-            Received from
+            RECEIVED FROM
           </div>
           <div
-            class="TransactionItem__AddressStyled-sc-1199a3v-4 eDIXqk"
+            class="TransactionItem__AddressStyled-sc-1199a3v-4 hLdONn"
           >
             fromaddress
           </div>

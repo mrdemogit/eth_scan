@@ -47,7 +47,6 @@ const ValueStyled = styled.div`
 `;
 
 const AddressStyled = styled.div`
-  text-transform: uppercase;
   margin: 0.2rem 0;
   font-size: 12px;
   text-overflow: ellipsis;
@@ -102,12 +101,12 @@ const TransactionItem: React.FC<Props> = ({
       </ValueAndTime>
       {from && address.toUpperCase() === from.toUpperCase() ? (
         <React.Fragment>
-          <AddressStyled>Sent to</AddressStyled>
+          <AddressStyled>SENT TO</AddressStyled>
           <AddressStyled>{to}</AddressStyled>
         </React.Fragment>
       ) : (
         <React.Fragment>
-          <AddressStyled>Received from</AddressStyled>
+          <AddressStyled>RECEIVED FROM</AddressStyled>
           <AddressStyled>{from}</AddressStyled>
         </React.Fragment>
       )}
